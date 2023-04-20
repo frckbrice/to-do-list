@@ -59,7 +59,7 @@ body {
   width: 30vw;
 }
 
-.submit {
+.add-task-btn {
  height: 5vh; 
  width: 7vw;
  font-size: 2.5vh;
@@ -87,6 +87,7 @@ body {
   padding: 5px;
   font-size: 2.8vh;
   font-weight: bolder;
+  cursor: pointer;
 }
 
 .btn {
@@ -105,4 +106,9 @@ body {
   display: flex;
   gap: 10px;
   margin-left: 5px;
+}
+
+.add-task-div {
+  display: flex;
+  column-gap: 5px;
 }

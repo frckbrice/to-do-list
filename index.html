@@ -29,20 +29,21 @@
     </div>
     <div id="items-list-container">
       <div class="type-in-text">
-        <h2 class="add-task"> Add Task(s)</h2>
+        <h2 class="add-task"> Add Task(s)</h2><div class="add-task-div">
         <input type="text" class="input-text" placeholder="Enter a task"/>
-        <input type="submit" name="submit" class="submit" value="Add" />
-      </div>
+        <input type="submit" name="submit" class="add-task-btn" value="Add" />
+      </div></div>
       <div id="tasks">
         <h2 class="task-title">Tasks</h2>
         <ul class=" list-of-tasks">
           <li class="li-task">push an existing repository from the command line
-            <div class="icons"><button class="delete-btn  btn delete">X</button><button class="delete-btn"><i class="fa fa-check"></i></button></div>
+            <div class="icons"><button class="delete-btn  btn delete">X</button><button class="delete-btn strike"><i class="fa fa-check"></i></button></div>
           </li>
           <li class="li-task">git remote add origin git@github.com:frckbrice/to-do-list.git
-            <div class="icons"><button class="delete-btn btn delete">X</button><button class="delete-btn"><i class="fa fa-check"></i></button></div>
-          </li>
-          <li class="li-task">git branch -M main && git push -u origin main <div class="icons"><button class="delete-btn btn delete">X</button><button class="delete-btn"><i class="fa fa-check"></i></button></div>
+            <div class="icons"><button class="delete-btn btn delete">X</button><button class="delete-btn strike"><i class="fa fa-check"></i></button></div>
+          </li> 
+          <li class="li-task">git branch -M main && git push -u origin main <div class="icons">
+            <button class="delete-btn btn delete">X</button><button class="delete-btn strike"><i class="fa fa-check"></i></button></div>
             
           </li>
         </ul>
