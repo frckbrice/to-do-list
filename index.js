@@ -3,110 +3,129 @@
 const submit = document.querySelector(".add-task-btn");
 const listOfTasks = document.querySelector(".list-of-tasks");
 const searchFilter = document.querySelector(".search-input");
-const strikeText = document.querySelectorAll(".strike");
 
 // add events
 submit.addEventListener("click", addTask);
 listOfTasks.addEventListener("click", removeBtn);
+// listOfTasks.addEventListener("click", strikeTextFn);
 searchFilter.addEventListener("keyup", searchFilterFn);
-Array.from(strikeText).forEach((item) => {
-  item.addEventListener("click", strikeTextFn);
-});
 
 /* function : add task */
 function addTask() {
   // get input text from user
   const inputText = document.querySelector(".input-text").value;
+  if (inputText !== "") {
+    //create li item (task)
+    const li = document.createElement("li");
+    li.className = "li-task";
+    // li.appendChild(document.createTextNode(inputText));
 
-  //create li item (task)
-  const li = document.createElement("li");
-  li.className = "li-task";
-  li.appendChild(document.createTextNode(inputText));
+    // create a p tag
+    const ParagraphTag = document.createElement("p");
+    ParagraphTag.className = "for-strike";
+    ParagraphTag.textContent = inputText;
+    ParagraphTag.style.color = "Blue";
+    ParagraphTag.style.userSelect = "none";
 
-  //create delete button1
-  const deleteButton = document.createElement("button");
-  deleteButton.style.cursor = "pointer";
-  deleteButton.appendChild(document.createTextNode("X"));
-  deleteButton.className = "delete-btn btn";
+    //create delete button1
+    const deleteButton = document.createElement("button");
+    deleteButton.style.cursor = "pointer";
+    deleteButton.appendChild(document.createTextNode("X"));
+    deleteButton.className = "delete-btn btn delete";
 
-  //create delete button2
-  const deleteButton2 = document.createElement("button");
-  deleteButton2.style.cursor = "pointer";
-  deleteButton2.appendChild(document.createTextNode(""));
-  deleteButton2.className = "delete-btn";
+    //create i tag for icon
+    const iIcon = document.createElement("i");
+    iIcon.className = "fa fa-check";
 
-  //create i tag for icon
-  const iIcon = document.createElement("i");
-  iIcon.appendChild(document.createTextNode(""));
-  iIcon.className = "fa fa-check";
+    //create container for buttons
+    const divIcons = document.createElement("div");
+    divIcons.className = "icons";
 
-  //add i tag to button2
-  deleteButton2.appendChild(iIcon);
+    //add the two buttons to container
+    divIcons.appendChild(deleteButton);
 
-  //create container for buttons
-  const divIcons = document.createElement("div");
-  divIcons.className = "icons";
+    //add p tag to li
+    li.appendChild(ParagraphTag);
 
-  //add the two buttons to container
-  divIcons.appendChild(deleteButton);
-  divIcons.appendChild(deleteButton2);
+    // add all to li
+    li.appendChild(divIcons);
 
-  // add all to li
-  li.appendChild(divIcons);
+    //add li to the end of list of tasks
+    listOfTasks.appendChild(li);
 
-  //add li to the end of list of tasks
-  listOfTasks.appendChild(li);
+    // add all to li
+    li.appendChild(divIcons);
+    const strikeButton = document.createElement("button");
+    strikeButton.style.cursor = "pointer";
+    strikeButton.className = "strikeBtn delete-btn";
+    //add i tag to button2
+    strikeButton.appendChild(iIcon);
+    divIcons.appendChild(strikeButton);
+    strikeButton.addEventListener("click", () => {
+      const text = ParagraphTag.textContent;
+      console.log(text);
+      if (confirm("Are you done with this task?")) {
+        ParagraphTag.innerHTML = `<del>${text}</del>`;
+      }
+    });
+
+    const iUndobtn = document.createElement('i');
+    iUndobtn.className = 'fa fa-undo';
+     const undoButton = document.createElement("button");
+     undoButton.style.cursor = "pointer";
+     undoButton.className = "undo-btn delete-btn";
+     undoButton.appendChild(iUndobtn);
+     divIcons.appendChild(undoButton);
+
+    undoButton.addEventListener("click", () => {
+      ParagraphTag.innerHTML = ParagraphTag.textContent;
+    });
+
+    // freeInputText();
+    document.querySelector(".input-text").value = "";
+
+    // To call functions
+    // strikeTextFn(e);
+    toSaveData();
+  }
 }
 
 /* function :  remove task */
 function removeBtn(e) {
-  // to target the true element to delete
   const deleteBtn = e.target;
   if (deleteBtn.classList.contains("delete")) {
     if (confirm("Are you sure you want to delete this task?")) {
-      //to target the parent of the element to delete
       const li = deleteBtn.parentElement.parentElement;
-      //delete the element from it's parent
       listOfTasks.removeChild(li);
     }
   }
 }
 
-// function to strike text from a task
-function strikeTextFn(e) {
-  console.log("within the strike fnt");
-  const li = e.target.parentElement.parentElement.parentElement;
-  console.log(li);
-  console.log(li.firstChild.textContent);
-  const textToStrike = li.firstChild.textContent;
-  if (confirm("Are you done with this task ?")) {
-    li.firstChild.innerHTML = textToStrike.strike();
-    // li.innerHTML = textToStrike.strike();
-    // console.log(textToStrike);
-    // li.setAttribute('text-decoration', 'line-through');
-    //textToStrike= `<del>${textToStrike}</del>`
-  }
-}
-
 /* function : seach for a task in in the list of tasks */
 function searchFilterFn(e) {
-  //target the filter element
-  // const searchFilter = document.querySelector('.search-input')
-  // to convert input text to lowercase
-  let textForSearch = e.target.value.toLowerCase();
-  // target all the tasks to be remove
+  const textForSearch = e.target.value.toLowerCase();
   const tasksToRemove = document.getElementsByTagName("li");
-  // conert the result in array
   Array.from(tasksToRemove).forEach((task) => {
-    // to get the content of all the tasks
-    let taskItemChild = task.firstChild.textContent;
-    // verify if the search text exist in the task content
+    const taskItemChild = task.firstChild.textContent;
     if (taskItemChild.toLocaleLowerCase().indexOf(textForSearch) != -1) {
-      // if existence display
       task.style.display = "block";
     } else {
-      // else hide
       task.style.display = "none";
     }
   });
 }
+
+/*funtion to store/saveguade list of task(s) tasks added in the list */
+function toSaveData() {
+  const ulTasks = document.querySelector(".list-of-tasks");
+  localStorage.setItem("datum", ulTasks.innerHTML);
+}
+
+// localStorage.removeItem("datum"); 
+
+/* function to show stored datum */
+function showDatum() {
+  const ulTasks = document.querySelector(".list-of-tasks");
+  ulTasks.innerHTML = localStorage.getItem("datum");
+}
+showDatum();

@@ -8,45 +8,46 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-     <link
+    <link
       href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap"
       rel="stylesheet"
     />
     <title>To Do List</title>
     <link rel="stylesheet" href="./assets/styles/styles.css" />
     <script src="./index.js" defer></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
-
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule=""
+      src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"
+    ></script>
   </head>
   <body>
     <div id="hearder">
       <h1>To Do List</h1>
       <div id="search-div">
         <a href="#" class="search-logo"><i class="fa fa-search"></i></a>
-        <input type="text" name="search" class="search-input" placeholder="search for a task(s)"/>
+        <input
+          type="text"
+          name="search"
+          class="search-input"
+          placeholder="search for a task(s)"
+        />
       </div>
     </div>
     <div id="items-list-container">
       <div class="type-in-text">
-        <h2 class="add-task"> Add Task(s)</h2><div class="add-task-div">
-        <input type="text" class="input-text" placeholder="Enter a task"/>
-        <input type="submit" name="submit" class="add-task-btn" value="Add" />
-      </div></div>
+        <h2 class="add-task">Add Task(s)</h2>
+        <div class="add-task-div">
+          <input type="text" class="input-text" placeholder="Enter a task" />
+          <input type="submit" name="submit" class="add-task-btn" value="Add" />
+        </div>
+      </div>
       <div id="tasks">
         <h2 class="task-title">Tasks</h2>
-        <ul class=" list-of-tasks">
-          <li class="li-task">push an existing repository from the command line
-            <div class="icons"><button class="delete-btn  btn delete">X</button><button class="delete-btn strike"><i class="fa fa-check"></i></button></div>
-          </li>
-          <li class="li-task">git remote add origin git@github.com:frckbrice/to-do-list.git
-            <div class="icons"><button class="delete-btn btn delete">X</button><button class="delete-btn strike"><i class="fa fa-check"></i></button></div>
-          </li> 
-          <li class="li-task">git branch -M main && git push -u origin main <div class="icons">
-            <button class="delete-btn btn delete">X</button><button class="delete-btn strike"><i class="fa fa-check"></i></button></div>
-            
-          </li>
-        </ul>
+        <ul class="list-of-tasks"></ul>
       </div>
     </div>
   </body>

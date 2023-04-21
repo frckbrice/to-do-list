@@ -12,7 +12,7 @@ body {
 }
 
 #hearder {
-  background-color: rgb(236, 113, 195);
+  background-color: rgba(236, 113, 195, 0.521);
   height: 15%;
   display: flex;
   justify-content: space-between;
@@ -90,10 +90,15 @@ body {
   cursor: pointer;
 }
 
+/* .strokeBtn {
+  background-color: aqua;
+} */
+
 .btn {
    width: 30px;
 }
 
+.fa-undo,
 .fa-check {
   padding: 0;
   width: 16px;
