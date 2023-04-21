@@ -67,6 +67,12 @@ body {
  color: aliceblue;
 }
 
+@media screen and (max-width: 425px){
+  .add-task-btn {
+    width: 50px;
+  }
+}
+
 .task-title {
   font-size: 4vh;
   margin-top: 15px;
