@@ -12,7 +12,7 @@ body {
 }
 
 #hearder {
-  background-color: rgb(236, 113, 195);
+  background-color: rgba(236, 113, 195, 0.521);
   height: 15%;
   display: flex;
   justify-content: space-between;
@@ -59,12 +59,18 @@ body {
   width: 30vw;
 }
 
-.submit {
+.add-task-btn {
  height: 5vh; 
  width: 7vw;
  font-size: 2.5vh;
  background-color: #c24fa9;
  color: aliceblue;
+}
+
+@media screen and (max-width: 425px){
+  .add-task-btn {
+    width: 50px;
+  }
 }
 
 .task-title {
@@ -87,12 +93,18 @@ body {
   padding: 5px;
   font-size: 2.8vh;
   font-weight: bolder;
+  cursor: pointer;
 }
+
+/* .strokeBtn {
+  background-color: aqua;
+} */
 
 .btn {
    width: 30px;
 }
 
+.fa-undo,
 .fa-check {
   padding: 0;
   width: 16px;
@@ -104,4 +116,10 @@ body {
 .icons {
   display: flex;
   gap: 10px;
+  margin-left: 5px;
+}
+
+.add-task-div {
+  display: flex;
+  column-gap: 5px;
 }
