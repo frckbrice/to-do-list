@@ -1,20 +1,23 @@
-// import values from html
+//* bind html objects
 
 const submit = document.querySelector(".add-task-btn");
 const listOfTasks = document.querySelector(".list-of-tasks");
 const searchFilter = document.querySelector(".search-input");
 
-// add events
+//* add events
 submit.addEventListener("click", addTask);
 listOfTasks.addEventListener("click", removeBtn);
 // listOfTasks.addEventListener("click", strikeTextFn);
 searchFilter.addEventListener("keyup", searchFilterFn);
 
-/* function : add task */
+//* function : add task */
 function addTask() {
   // get input text from user
-  const inputText = document.querySelector(".input-text").value;
-  if (inputText !== "") {
+  const inputText = document
+    .querySelector(".input-text")
+    .value.toString()
+    .trim();
+  if (inputText) {
     //create li item (task)
     const li = document.createElement("li");
     li.className = "li-task";
@@ -61,6 +64,7 @@ function addTask() {
     //add i tag to button2
     strikeButton.appendChild(iIcon);
     divIcons.appendChild(strikeButton);
+    //* function to strike text
     strikeButton.addEventListener("click", () => {
       const text = ParagraphTag.textContent;
       console.log(text);
@@ -69,14 +73,14 @@ function addTask() {
       }
     });
 
-    const iUndobtn = document.createElement('i');
-    iUndobtn.className = 'fa fa-undo';
-     const undoButton = document.createElement("button");
-     undoButton.style.cursor = "pointer";
-     undoButton.className = "undo-btn delete-btn";
-     undoButton.appendChild(iUndobtn);
-     divIcons.appendChild(undoButton);
-
+    const iUndobtn = document.createElement("i");
+    iUndobtn.className = "fa fa-undo";
+    const undoButton = document.createElement("button");
+    undoButton.style.cursor = "pointer";
+    undoButton.className = "undo-btn delete-btn";
+    undoButton.appendChild(iUndobtn);
+    divIcons.appendChild(undoButton);
+    //*function to unstrike a text
     undoButton.addEventListener("click", () => {
       ParagraphTag.innerHTML = ParagraphTag.textContent;
     });
@@ -90,7 +94,7 @@ function addTask() {
   }
 }
 
-/* function :  remove task */
+//* function :  remove task */
 function removeBtn(e) {
   const deleteBtn = e.target;
   if (deleteBtn.classList.contains("delete")) {
@@ -101,7 +105,7 @@ function removeBtn(e) {
   }
 }
 
-/* function : seach for a task in in the list of tasks */
+//* function : seach for a task in in the list of tasks */
 function searchFilterFn(e) {
   const textForSearch = e.target.value.toLowerCase();
   const tasksToRemove = document.getElementsByTagName("li");
@@ -115,15 +119,15 @@ function searchFilterFn(e) {
   });
 }
 
-/*funtion to store/saveguade list of task(s) tasks added in the list */
+//*funtion to store/saveguade list of task(s) tasks added in the list */
 function toSaveData() {
   const ulTasks = document.querySelector(".list-of-tasks");
   localStorage.setItem("datum", ulTasks.innerHTML);
 }
 
-// localStorage.removeItem("datum"); 
+//* localStorage.removeItem("datum");
 
-/* function to show stored datum */
+//* function to show stored datum */
 function showDatum() {
   const ulTasks = document.querySelector(".list-of-tasks");
   ulTasks.innerHTML = localStorage.getItem("datum");
